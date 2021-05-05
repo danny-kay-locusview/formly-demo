@@ -1,0 +1,9 @@
+:host {
+  width: 100%;
+}
+
+::ng-deep {
+  formly-field:empty {
+    display: none;
+  }
+}

@@ -1,0 +1,204 @@
+[
+  {
+    "fieldGroupClassName": "form-card",
+    "fieldGroup": [
+      {
+        "className": "form-card-title",
+        "template": "Prompt Alert"
+      },
+      {
+        "className": "form-card-field",
+        "key": "severity_level",
+        "type": "select",
+        "templateOptions": {
+          "label": "Severity Level",
+          "placeholder": "Severity Level",
+          "options": [],
+          "required": true
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.severity_level.filter(o => !!o.matchValue === formState.enhanced)",
+          "model.severity_level": "field.templateOptions.options.find(o => o.value === model.severity_level) ? model.severity_level : null"
+        }
+      },
+      {
+        "className": "form-card-field",
+        "key": "alert_will",
+        "type": "select",
+        "templateOptions": {
+          "label": "Alert Will",
+          "placeholder": "Alert Will",
+          "options": [],
+          "multiple": true
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.alert_will"
+        },
+        "hideExpression": "!formState.enhanced",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-field",
+        "key": "project_types",
+        "type": "select",
+        "templateOptions": {
+          "label": "On Project Types",
+          "placeholder": "On Project Types",
+          "options": [],
+          "multiple": true
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.project_types",
+          "templateOptions.required": "model.severity_level == 'WARNING'"
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "form-card",
+    "fieldGroup": [
+      {
+        "className": "form-card-title",
+        "template": "When Entity"
+      },
+      {
+        "className": "form-card-field",
+        "key": "alert_on_entity",
+        "type": "select",
+        "templateOptions": {
+          "label": "Alert applies on",
+          "placeholder": "Alert applies on",
+          "options": [],
+          "required":  true
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.alert_on_entity.filter(o => model.project_types?.length > 0 && (!o.matchValue || model.project_types?.length === o.matchValue))",
+          "model.alert_on_entity": "field.templateOptions.options.find(o => o.value === model.alert_on_entity) ? model.alert_on_entity : null"
+        }
+      },
+      {
+        "className": "form-card-field",
+        "key": "which_type",
+        "type": "select",
+        "templateOptions": {
+          "label": "",
+          "placeholder": "",
+          "options": [],
+          "required":  true,
+          "multiple": true
+        },
+        "expressionProperties": {
+          "templateOptions.label": "'Which ' + model.alert_on_entity + ' type'",
+          "templateOptions.placeholder": "'Which ' + model.alert_on_entity + ' type'",
+          "templateOptions.options": "formState.fieldOptions.which_type"
+        },
+        "hideExpression": "!model.alert_on_entity || model.alert_on_entity === 'project'",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-field",
+        "type": "clear",
+        "templateOptions": {
+          "keyOfFieldToClear": "alert_on_entity"
+        },
+        "hideExpression": "!model.alert_on_entity",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-spacer",
+        "template": "<div/>"
+      },
+      {
+        "className": "form-card-field",
+        "fieldGroup": [
+          {
+            "key": "conditions",
+            "type": "repeat",
+            "templateOptions": {
+              "addFirstText": "Set Specific Fields",
+              "addText": "Add Field"
+            },
+            "fieldArray": {
+              "className": "form-card-row",
+              "fieldGroup": [
+                {
+                  "className": "form-card-field",
+                  "key": "condition",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Field",
+                    "placeholder": "Field",
+                    "options": []
+                  }
+                },
+                {
+                  "className": "form-card-field",
+                  "key": "condition2",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Field2",
+                    "placeholder": "Field2",
+                    "options": []
+                  }
+                }
+              ]
+            },
+            "resetOnHide": true
+          }
+        ],
+        "hideExpression": "model.alert_on_entity !== 'project' && !model.which_type",
+        "resetOnHide": true
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "form-card",
+    "fieldGroup": [
+      {
+        "className": "form-card-title",
+        "template": "Satisfies"
+      },
+      {
+        "className": "form-card-field",
+        "key": "alert_will_prompt_if",
+        "type": "select",
+        "templateOptions": {
+          "label": "Alert will prompt if",
+          "placeholder": "Alert will prompt if",
+          "options": []
+        }
+      },
+      {
+        "className": "form-card-field",
+        "key": "entity_type",
+        "type": "select",
+        "templateOptions": {
+          "label": "Entity type",
+          "placeholder": "Entity type",
+          "options": [],
+          "required": true
+        }
+      }
+    ]
+  },
+  {
+    "fieldGroupClassName": "form-card",
+    "fieldGroup": [
+      {
+        "className": "form-card-title",
+        "template": "Long Story Short"
+      },
+      {
+        "className": "form-card-field",
+        "key": "display_label",
+        "type": "input",
+        "templateOptions": {
+          "label": "Display label",
+          "placeholder": "Display label",
+          "options": [],
+          "required": true
+        }
+      }
+    ]
+  }
+]

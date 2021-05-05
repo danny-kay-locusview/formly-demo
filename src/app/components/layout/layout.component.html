@@ -1,0 +1,12 @@
+<mat-drawer-container class="drawer-container">
+  <mat-drawer class="drawer-sidenav" mode="side" position="end">
+    <app-payload-viewer [data]="model"></app-payload-viewer>
+    <app-notes [data]="notes"></app-notes>
+  </mat-drawer>
+
+  <div class="drawer-sidenav-content">
+    <div class="left-content">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</mat-drawer-container>

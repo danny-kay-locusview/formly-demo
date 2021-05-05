@@ -1,0 +1,7 @@
+<div class="custom-input">
+  <span class="custom-input-label">{{ field.templateOptions.label }}</span>
+  <label *ngFor="let option of field.templateOptions.options">
+    <input type="radio" [value]="option.value" [formControl]="formControl" [formlyAttributes]="field">
+    <span>{{ option.label }}</span>
+  </label>
+</div>

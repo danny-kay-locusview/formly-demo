@@ -1,0 +1,13 @@
+:host {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 3px 2px 0 rgb(0, 0, 0, .15);
+
+  mat-toolbar {
+    height: 77px;
+  }
+
+  .spacer {
+    flex: 1 1 auto;
+  }
+}

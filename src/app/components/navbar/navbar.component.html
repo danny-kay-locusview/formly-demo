@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <span>{{ title }}</span>
+
+  <span class="spacer"></span>
+
+  <button mat-button [matMenuTriggerFor]="menu">
+    {{ currentDemo.data.title }}
+    <mat-icon>expand_more</mat-icon>
+  </button>
+  <button mat-icon-button (click)="toggleSideNav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let demoType of demoTypes" (click)="onDemoTypeClick(demoType)">
+      <span>{{ demoType.data.title }}</span>
+    </button>
+  </mat-menu>
+</mat-toolbar>

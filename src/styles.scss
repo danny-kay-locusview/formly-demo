@@ -1,1 +1,56 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Lato, "Helvetica Neue", sans-serif;
+  overflow: hidden;
+  background: #FBFBFB;
+}
+
+.mat-grid-tile:first-of-type .mat-figure {
+  align-items: start;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+.drawer-container {
+  height: 100%;
+}
+
+.mat-drawer-content,
+.mat-drawer-inner-container {
+  overflow-x: hidden !important;
+}
+
+.mat-drawer-inner-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.drawer-sidenav {
+  width: 33.34%;
+}
+
+.left-content {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 2rem 1rem;
+
+  h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .mat-chip {
+      font-size: 12px;
+    }
+  }
+
+  button + button {
+    margin-left: .5rem;
+  }
+}

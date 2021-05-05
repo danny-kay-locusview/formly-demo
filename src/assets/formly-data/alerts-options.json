@@ -1,0 +1,98 @@
+{
+  "severity_level": [
+    {
+      "id": 1,
+      "value": "WARNING",
+      "label": "Warning",
+      "matchValue": 0
+    },
+    {
+      "id": 2,
+      "value": "VIOLATION",
+      "label": "Violation",
+      "matchValue":  0
+    },
+    {
+      "id": 3,
+      "value": "WARNING",
+      "label": "Low",
+      "matchValue":  1
+    },
+    {
+      "id": 4,
+      "value": "MINOR_VIOLATION",
+      "label": "Medium",
+      "matchValue":  1
+    },
+    {
+      "id": 5,
+      "value": "VIOLATION",
+      "label": "High",
+      "matchValue":  1
+    }
+  ],
+  "alert_will": [
+    {
+      "id": 1,
+      "value": "PREVENT_APPROVAL",
+      "label": "Prevent approval"
+    },
+    {
+      "id": 2,
+      "value": "PREVENT_SUBMISSION",
+      "label": "Prevent submission"
+    }
+  ],
+  "project_types": [
+    {
+      "id": 1,
+      "value": "leak_repair",
+      "label": "Leak Repair"
+    },
+    {
+      "id": 2,
+      "value": "new_construction",
+      "label": "New Construction"
+    },
+    {
+      "id": 3,
+      "value": "replacement",
+      "label": "Replacement"
+    },
+    {
+      "id": 4,
+      "value": "retirement",
+      "label": "Retirement"
+    }
+  ],
+  "alert_on_entity": [
+    {
+      "id": 1,
+      "value": "asset",
+      "label": "Asset type"
+    },
+    {
+      "id": 2,
+      "value": "form",
+      "label": "Form type"
+    },
+    {
+      "id": 3,
+      "value": "joint",
+      "label": "Joint type"
+    },
+    {
+      "id": 4,
+      "value": "project",
+      "label": "Project type itself",
+      "matchValue": 1
+    }
+  ],
+  "which_type": [
+    {
+      "id": 1,
+      "value": "asset",
+      "label": "Asset type"
+    }
+  ]
+}

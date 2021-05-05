@@ -1,0 +1,6 @@
+<div class="formly-form-wrapper">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(model)">
+    <formly-form [form]="form" [model]="model" [fields]="fields" [options]="options"></formly-form>
+    <button *ngFor="let action of actions" mat-raised-button [color]="action.color" (click)="action.action()">{{ action.title }}</button>
+  </form>
+</div>

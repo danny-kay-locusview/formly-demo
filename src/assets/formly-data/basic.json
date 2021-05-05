@@ -1,0 +1,197 @@
+[
+  {
+    "key": "name",
+    "type": "input",
+    "templateOptions": {
+      "label": "Name",
+      "placeholder": "Name",
+      "required": true
+    }
+  },
+  {
+    "key": "email",
+    "type": "input",
+    "templateOptions": {
+      "label": "Email address",
+      "placeholder": "Enter email",
+      "required": true,
+      "type": "email"
+    }
+  },
+  {
+    "key": "dob",
+    "type": "datepicker",
+    "templateOptions": {
+      "label": "Date of birth",
+      "placeholder": "Date of birth",
+      "required": true
+    }
+  },
+  {
+    "key": "lucky_number",
+    "type": "input",
+    "templateOptions": {
+      "label": "Lucky number",
+      "placeholder": "Lucky number",
+      "required": false,
+      "type": "number",
+      "min": 1,
+      "max": 10
+    }
+  },
+  {
+    "key": "secret_code",
+    "type": "input",
+    "templateOptions": {
+      "label": "Secret code",
+      "placeholder": "Secret code",
+      "required": false,
+      "type": "password"
+    }
+  },
+  {
+    "key": "favourite_food",
+    "type": "select",
+    "templateOptions": {
+      "label": "Favourite food",
+      "placeholder": "Favourite food",
+      "required": true,
+      "options": [
+        {
+          "label": "Pizza",
+          "value": "pizza"
+        },
+        {
+          "label": "Burger",
+          "value": "burger"
+        },
+        {
+          "label": "Salad",
+          "value": "salad",
+          "disabled": true
+        },
+        {
+          "label": "Fish and Chips",
+          "value": "fish_and_chips"
+        },
+        {
+          "label": "Curry",
+          "value": "curry"
+        }
+      ]
+    }
+  },
+  {
+    "key": "favourite_drink",
+    "type": "select",
+    "templateOptions": {
+      "label": "Favourite drink",
+      "placeholder": "Favourite drink",
+      "multiple": true,
+      "options": [
+        {
+          "label": "Beer",
+          "value": "beer"
+        },
+        {
+          "label": "Beer",
+          "value": "beer"
+        },
+        {
+          "label": "Beer",
+          "value": "beer"
+        },
+        {
+          "label": "Beer",
+          "value": "beer"
+        },
+        {
+          "label": "Beer",
+          "value": "beer"
+        }
+      ]
+    },
+    "expressionProperties": {
+      "templateOptions.disabled": "!model.favourite_food",
+      "templateOptions.required": "model.favourite_food"
+    }
+  },
+  {
+    "key": "legal",
+    "type": "checkbox",
+    "templateOptions": {
+      "label": "I agree that I am of legal drinking age?"
+    },
+    "hideExpression": "!model.favourite_drink",
+    "resetOnHide": true,
+    "expressionProperties": {
+      "templateOptions.required": "(model.favourite_drink?.length > 0)"
+    }
+  },
+  {
+    "key": "legal1",
+    "type": "checkbox",
+    "templateOptions": {
+      "label": "Really?"
+    },
+    "hideExpression": "!model.legal",
+    "resetOnHide": true,
+    "expressionProperties": {
+      "templateOptions.required": "(model.favourite_drink?.length > 0)"
+    }
+  },
+  {
+    "key": "legal2",
+    "type": "checkbox",
+    "templateOptions": {
+      "label": "Like... Really?"
+    },
+    "hideExpression": "!model.legal1",
+    "resetOnHide":  true,
+    "expressionProperties": {
+      "templateOptions.required": "(model.favourite_drink?.length > 0)"
+    },
+    "validators": {
+
+    }
+  },
+  {
+    "key": "more_than_3_drinks",
+    "type": "checkbox",
+    "templateOptions": {
+      "label": "I can drink more than 3 beers?"
+    },
+    "hideExpression": "!(model.favourite_drink?.length > 3)",
+    "resetOnHide": true
+  },
+  {
+    "key": "custom_field",
+    "type": "custom",
+    "templateOptions": {
+      "label": "Custom field",
+      "options": [
+        {
+          "label": "😐",
+          "value": "\uD83D\uDE10"
+        },
+        {
+          "label": "😁",
+          "value": "\uD83D\uDE01"
+        },
+        {
+          "label": "😎",
+          "value": "\uD83D\uDE0E"
+        }
+      ]
+    }
+  },
+  {
+    "key": "custom_wrapper",
+    "type": "input",
+    "wrappers": ["customWrapper"],
+    "templateOptions": {
+      "label": "This is a input with a custom wrapper that displays a tooltip",
+      "placeholder": "This is an input with a custom wrapper that displays a tooltip"
+    }
+  }
+]

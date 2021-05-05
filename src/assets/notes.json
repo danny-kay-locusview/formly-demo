@@ -1,0 +1,7 @@
+[
+  "'Reset' will reset the form to the initial state of the model given, so default values are preserved rather than nullified.",
+  "There are some issues with resetting the model with dynamically added fields. Need to investigate.",
+  "When using <code>hide</code> or <code>hideExpression</code>, fields do not automatically clear. This should be used together with <code>resetOnHide</code>.",
+  "When using <code>hide</code> or <code>hideExpression</code> the field still exists in the DOM. Current hack is to apply <code>display: none;</code> to <code>formly-field:empty</code> in CSS",
+  "Validation of required checkbox must use <code>requiredTrue</code> validator, otherwise unchecked (false) will be valid."
+]
