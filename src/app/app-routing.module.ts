@@ -8,6 +8,7 @@ import { CustomComponent } from "./pages/custom/custom.component";
 const routes: Routes = [
   {path: '', component: BasicComponent, data: {title: 'Simple style'}},
   {path: 'alerts', component: AlertsComponent, data: {title: 'Warnings & Violations style'}},
+  {path: 'alerts/:id', component: AlertsComponent },
   {path: 'configuration', component: ConfigurationComponent, data: {title: 'Configuration style'}},
   {path: 'custom', component: CustomComponent, data: {title: 'Custom Playground'}},
 ];

@@ -17,7 +17,7 @@ export class NavbarComponent {
     private route: ActivatedRoute,
     private router: Router
   ) {
-    this.demoTypes = this.router.config;
+    this.demoTypes = this.router.config.filter(route => !!route.data?.title);
     this.currentDemo = this.demoTypes.find((demoType) => demoType.path === window.location.pathname.split("/")[1]);
   }
 

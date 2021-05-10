@@ -4,6 +4,7 @@ import { SharedService } from "../../services/shared.service";
 import fieldsJson from "../../../assets/formly-data/alerts.json";
 import fieldOptionsJson from "../../../assets/formly-data/alerts-options.json";
 import responseJson from "../../../assets/formly-data/alerts-response.json";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: 'app-alerts',
@@ -11,20 +12,29 @@ import responseJson from "../../../assets/formly-data/alerts-response.json";
   styleUrls: ['./alerts.component.scss']
 })
 export class AlertsComponent extends LayoutComponent implements OnInit {
-  constructor(public sharedService: SharedService) {
+  private _enhanced: boolean = false;
+  private _responseIndex: number = null;
+
+  constructor(
+    public sharedService: SharedService,
+    private route: ActivatedRoute
+  ) {
     super(sharedService);
   }
 
   ngOnInit(): void {
+    const id: string = this.route.snapshot.paramMap.get("id");
+    this._responseIndex = id ? parseInt(id) : null;
+
     this.initializeFormState();
     this.initializeFieldOptions();
-    this.initializeModel(0);
+    this.initializeModel(this._responseIndex);
     this.initializeFields();
   }
 
   initializeFormState(): void {
     this.options.formState = {
-      enhanced: false,
+      enhanced: this._enhanced,
       fieldOptions: []
     }
   }
