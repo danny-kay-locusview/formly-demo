@@ -34,6 +34,8 @@ import { ConfigurationComponent } from './pages/configuration/configuration.comp
 import { RepeatInputComponent } from './components/repeat-input/repeat-input.component';
 import { ClearInputComponent } from './components/clear-input/clear-input.component';
 import { CustomComponent } from './pages/custom/custom.component';
+import { FormlyMatToggleModule } from "@ngx-formly/material/toggle";
+import { MatSelectModule } from "@angular/material/select";
 
 const FORMLY_CONFIG = {
   extras: {
@@ -88,7 +90,9 @@ const FORMLY_CONFIG = {
     FormlyModule.forRoot(FORMLY_CONFIG),
     FormlyMaterialModule,
     FormlyMatDatepickerModule,
-    FormsModule
+    FormlyMatToggleModule,
+    FormsModule,
+    MatSelectModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent],

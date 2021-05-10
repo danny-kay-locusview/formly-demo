@@ -1,6 +1,6 @@
 [
   {
-    "fieldGroupClassName": "form-card",
+    "fieldGroupClassName": "form-card grid",
     "fieldGroup": [
       {
         "className": "form-card-title",
@@ -8,17 +8,16 @@
       },
       {
         "className": "form-card-field",
-        "key": "severity_level",
+        "key": "alertLevel",
         "type": "select",
         "templateOptions": {
           "label": "Severity Level",
           "placeholder": "Severity Level",
-          "options": [],
           "required": true
         },
         "expressionProperties": {
-          "templateOptions.options": "formState.fieldOptions.severity_level.filter(o => !!o.matchValue === formState.enhanced)",
-          "model.severity_level": "field.templateOptions.options.find(o => o.value === model.severity_level) ? model.severity_level : null"
+          "templateOptions.options": "formState.fieldOptions.alertLevel.filter(o => !!o.matchValue === formState.enhanced)",
+          "model.alertLevel": "field.templateOptions.options.find(o => o.value === model.alertLevel) ? model.alertLevel : null"
         }
       },
       {
@@ -28,8 +27,8 @@
         "templateOptions": {
           "label": "Alert Will",
           "placeholder": "Alert Will",
-          "options": [],
-          "multiple": true
+          "multiple": true,
+          "required": true
         },
         "expressionProperties": {
           "templateOptions.options": "formState.fieldOptions.alert_will"
@@ -39,23 +38,22 @@
       },
       {
         "className": "form-card-field",
-        "key": "project_types",
+        "key": "projectTypeIds",
         "type": "select",
         "templateOptions": {
-          "label": "On Project Types",
-          "placeholder": "On Project Types",
-          "options": [],
-          "multiple": true
+          "label": "Project Types",
+          "placeholder": "Project Types",
+          "multiple": true,
+          "required": true
         },
         "expressionProperties": {
-          "templateOptions.options": "formState.fieldOptions.project_types",
-          "templateOptions.required": "model.severity_level == 'WARNING'"
+          "templateOptions.options": "formState.fieldOptions.projectTypeIds"
         }
       }
     ]
   },
   {
-    "fieldGroupClassName": "form-card",
+    "fieldGroupClassName": "form-card grid",
     "fieldGroup": [
       {
         "className": "form-card-title",
@@ -63,96 +61,149 @@
       },
       {
         "className": "form-card-field",
-        "key": "alert_on_entity",
+        "key": "entityType",
         "type": "select",
         "templateOptions": {
           "label": "Alert applies on",
           "placeholder": "Alert applies on",
-          "options": [],
-          "required":  true
+          "required": true
         },
         "expressionProperties": {
-          "templateOptions.options": "formState.fieldOptions.alert_on_entity.filter(o => model.project_types?.length > 0 && (!o.matchValue || model.project_types?.length === o.matchValue))",
-          "model.alert_on_entity": "field.templateOptions.options.find(o => o.value === model.alert_on_entity) ? model.alert_on_entity : null"
+          "templateOptions.options": "formState.fieldOptions.entityType.filter(o => (model.projectTypeIds?.length > 0) && (!o.matchValue || model.projectTypeIds?.length === o.matchValue))",
+          "model.entityType": "field.templateOptions.options.find(o => o.value === model.entityType) ? model.entityType : null"
         }
       },
       {
         "className": "form-card-field",
-        "key": "which_type",
+        "key": "entityTypeIds",
         "type": "select",
         "templateOptions": {
-          "label": "",
-          "placeholder": "",
-          "options": [],
-          "required":  true,
+          "required": true,
           "multiple": true
         },
         "expressionProperties": {
-          "templateOptions.label": "'Which ' + model.alert_on_entity + ' type'",
-          "templateOptions.placeholder": "'Which ' + model.alert_on_entity + ' type'",
-          "templateOptions.options": "formState.fieldOptions.which_type"
+          "templateOptions.label": "'Which ' + model.entityType + ' type'",
+          "templateOptions.placeholder": "'Which ' + model.entityType + ' type'",
+          "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType)"
         },
-        "hideExpression": "!model.alert_on_entity || model.alert_on_entity === 'project'",
+        "hideExpression": "!model.entityType || model.entityType === 'PROJECT_TYPE'",
         "resetOnHide": true
       },
       {
         "className": "form-card-field",
+        "key": "clear",
         "type": "clear",
         "templateOptions": {
-          "keyOfFieldToClear": "alert_on_entity"
+          "keyOfFieldToClear": "entityType"
         },
-        "hideExpression": "!model.alert_on_entity",
+        "hideExpression": "!model.entityType",
         "resetOnHide": true
       },
       {
-        "className": "form-card-spacer",
-        "template": "<div/>"
-      },
-      {
-        "className": "form-card-field",
+        "className": "form-card-field grid-row-3 grid-col-2",
         "fieldGroup": [
           {
-            "key": "conditions",
+            "key": "definition",
             "type": "repeat",
             "templateOptions": {
               "addFirstText": "Set Specific Fields",
               "addText": "Add Field"
             },
             "fieldArray": {
-              "className": "form-card-row",
+              "fieldGroupClassName": "grid",
               "fieldGroup": [
                 {
-                  "className": "form-card-field",
-                  "key": "condition",
+                  "className": "form-card-field toggle grid-row-1",
+                  "key": "criterion",
+                  "type": "radio",
+                  "templateOptions": {
+                    "options": [
+                      { "value": "and", "label": "And" },
+                      { "value": "or", "label": "Or" }
+                    ]
+                  },
+                  "defaultValue": "and",
+                  "hideExpression": "field.parent.index === 0",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "fieldKey",
                   "type": "select",
                   "templateOptions": {
                     "label": "Field",
                     "placeholder": "Field",
-                    "options": []
+                    "required": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.fieldKey.filter(o => !!o.matchValue.some(mv => !mv.entityTypeIds && mv.entityType === field.parent.parent.parent.model.entityType))",
+                    "model.fieldKey": "field.templateOptions.options.find(o => o.value === model.fieldKey) ? model.fieldKey : null"
                   }
                 },
                 {
-                  "className": "form-card-field",
-                  "key": "condition2",
+                  "className": "form-card-field grid-row-2",
+                  "key": "operator",
                   "type": "select",
                   "templateOptions": {
-                    "label": "Field2",
-                    "placeholder": "Field2",
-                    "options": []
-                  }
+                    "label": "Was filled out with",
+                    "placeholder": "Was filled out with",
+                    "required": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.operator",
+                    "model.operator": "field.templateOptions.options.find(o => o.value === model.operator) ? model.operator : null"
+                  },
+                  "hideExpression": "!model.fieldKey",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "values",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Specific value",
+                    "placeholder": "Specific value",
+                    "multiple": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.values.filter(o => model.operator === 'ANY' && o.matchValue.indexOf(model.fieldKey) > -1)"
+                  },
+                  "hideExpression": "model.operator !== 'ANY'",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "min",
+                  "type": "input",
+                  "templateOptions": {
+                    "label": "Min value",
+                    "placeholder": "Min value"
+                  },
+                  "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "max",
+                  "type": "input",
+                  "templateOptions": {
+                    "label": "Min value",
+                    "placeholder": "Min value"
+                  },
+                  "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
+                  "resetOnHide": true
                 }
               ]
-            },
-            "resetOnHide": true
+            }
           }
         ],
-        "hideExpression": "model.alert_on_entity !== 'project' && !model.which_type",
+        "hideExpression": "model.entityType !== 'PROJECT_TYPE' && !(model.entityTypeIds?.length > 0)",
         "resetOnHide": true
       }
     ]
   },
   {
-    "fieldGroupClassName": "form-card",
+    "fieldGroupClassName": "form-card grid",
     "fieldGroup": [
       {
         "className": "form-card-title",
@@ -160,42 +211,240 @@
       },
       {
         "className": "form-card-field",
-        "key": "alert_will_prompt_if",
+        "key": "evaluationType",
         "type": "select",
         "templateOptions": {
           "label": "Alert will prompt if",
-          "placeholder": "Alert will prompt if",
-          "options": []
+          "placeholder": "Alert will prompt if"
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.evaluationType"
         }
       },
       {
         "className": "form-card-field",
-        "key": "entity_type",
+        "key": "entityType2",
         "type": "select",
         "templateOptions": {
-          "label": "Entity type",
-          "placeholder": "Entity type",
-          "options": [],
+          "label": "Entity Type",
+          "placeholder": "Entity Type",
           "required": true
+        },
+        "expressionProperties": {
+          "templateOptions.options": "formState.fieldOptions.entityType.filter(o => o.value !== 'PROJECT_TYPE' && o.value !== model.entityType && !!model.entityType)",
+          "model.entityType2": "field.templateOptions.options.find(o => o.value === model.entityType2) ? model.entityType2 : null"
+        },
+        "hideExpression": "model.evaluationType === 'CURRENT'",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-field",
+        "key": "entityTypeIds2",
+        "type": "select",
+        "templateOptions": {
+          "required": true,
+          "multiple": true
+        },
+        "expressionProperties": {
+          "templateOptions.label": "'Which ' + model.entityType2 + ' type'",
+          "templateOptions.placeholder": "'Which ' + model.entityType2 + ' type'",
+          "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType2)"
+        },
+        "hideExpression": "model.evaluationType === 'CURRENT' || !model.entityType2",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-field",
+        "key": "clear",
+        "type": "clear",
+        "templateOptions": {
+          "keyOfFieldToClear": "entityType2"
         }
+      },
+      {
+        "className": "form-card-field grid-row-3",
+        "fieldGroup": [
+          {
+            "key": "attachment",
+            "type": "repeat",
+            "templateOptions": {
+              "addText": "Add Attachment Type"
+            },
+            "fieldArray": {
+              "fieldGroupClassName": "grid",
+              "fieldGroup": [
+                {
+                  "className": "form-card-field toggle grid-row-1",
+                  "key": "criterion",
+                  "type": "radio",
+                  "templateOptions": {
+                    "options": [
+                      { "value": "and", "label": "And" },
+                      { "value": "or", "label": "Or" }
+                    ]
+                  },
+                  "defaultValue": "and"
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "entityType",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Entity Type",
+                    "placeholder": "Entity Type",
+                    "required": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.entityType.filter(o => o.value !== 'PROJECT_TYPE' && o.value !== field.parent.parent.parent.model.entityType)"
+                  }
+                },
+                {
+                  "className": "form-card-field",
+                  "key": "entityTypeIds",
+                  "type": "select",
+                  "templateOptions": {
+                    "required": true,
+                    "multiple": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.label": "'Which ' + model.entityType + ' type'",
+                    "templateOptions.placeholder": "'Which ' + model.entityType + ' type'",
+                    "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType)"
+                  },
+                  "hideExpression": "model.evaluationType === 'CURRENT' || !model.entityType",
+                  "resetOnHide": true
+                }
+              ]
+            }
+          }
+        ],
+        "hideExpression": "!model.evaluationType",
+        "resetOnHide": true
+      },
+      {
+        "className": "form-card-field grid-row-3",
+        "fieldGroup": [
+          {
+            "key": "trigger",
+            "type": "repeat",
+            "templateOptions": {
+              "addFirstText": "Set Specific Fields",
+              "addText": "Add Field"
+            },
+            "fieldArray": {
+              "fieldGroupClassName": "grid",
+              "fieldGroup": [
+                {
+                  "className": "form-card-field toggle grid-row-1",
+                  "key": "criterion",
+                  "type": "radio",
+                  "templateOptions": {
+                    "options": [
+                      { "value": "and", "label": "And" },
+                      { "value": "or", "label": "Or" }
+                    ]
+                  },
+                  "defaultValue": "and",
+                  "hideExpression": "field.parent.index === 0",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "fieldKey",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Field",
+                    "placeholder": "Field",
+                    "required": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.fieldKey.filter(o => !!o.matchValue.some(mv => !mv.entityTypeIds && mv.entityType === field.parent.parent.parent.model.entityType2))",
+                    "model.fieldKey": "field.templateOptions.options.find(o => o.value === model.fieldKey) ? model.fieldKey : null"
+                  }
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "operator",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Was filled out with",
+                    "placeholder": "Was filled out with",
+                    "required": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.operator",
+                    "model.operator": "field.templateOptions.options.find(o => o.value === model.operator) ? model.operator : null"
+                  },
+                  "hideExpression": "!model.fieldKey",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "values",
+                  "type": "select",
+                  "templateOptions": {
+                    "label": "Specific value",
+                    "placeholder": "Specific value",
+                    "multiple": true
+                  },
+                  "expressionProperties": {
+                    "templateOptions.options": "formState.fieldOptions.values.filter(o => model.operator === 'ANY' && o.matchValue.indexOf(model.fieldKey) > -1)"
+                  },
+                  "hideExpression": "model.operator !== 'ANY'",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "min",
+                  "type": "input",
+                  "templateOptions": {
+                    "label": "Min value",
+                    "placeholder": "Min value"
+                  },
+                  "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
+                  "resetOnHide": true
+                },
+                {
+                  "className": "form-card-field grid-row-2",
+                  "key": "max",
+                  "type": "input",
+                  "templateOptions": {
+                    "label": "Min value",
+                    "placeholder": "Min value"
+                  },
+                  "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
+                  "resetOnHide": true
+                }
+              ]
+            }
+          }
+        ],
+        "hideExpression": "!model.evaluationType || model.evaluationType === 'LINKED' && !(model.entityTypeIds2?.length > 0)",
+        "resetOnHide": true
       }
     ]
   },
   {
-    "fieldGroupClassName": "form-card",
+    "fieldGroupClassName": "form-card grid",
     "fieldGroup": [
       {
         "className": "form-card-title",
         "template": "Long Story Short"
       },
       {
-        "className": "form-card-field",
-        "key": "display_label",
+        "className": "form-card-text grid-col-max",
+        "key": "alertSummary",
         "type": "input",
         "templateOptions": {
-          "label": "Display label",
-          "placeholder": "Display label",
-          "options": [],
+          "readonly": true
+        }
+      },
+      {
+        "key": "title",
+        "type": "input",
+        "templateOptions": {
+          "label": "Display Label",
+          "placeholder": "Display Label",
           "required": true
         }
       }

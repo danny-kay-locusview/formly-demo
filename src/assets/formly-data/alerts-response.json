@@ -1,0 +1,754 @@
+[
+  {
+    "id": 2,
+    "createDate": "2019-03-15T00:17:36Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Service Asset Without GSR Attached",
+    "alertSummary": " Bore, Pipes and Fittings, Non-Gas Carrying Point, Existing Pipe, Existing Fitting, Non-Gas Carrying Line with System Type Service has no  Gas Service Record ",
+    "projectTypeIds": [
+      1,
+      9,
+      8,
+      10
+    ],
+    "alertDefinition": {
+      "id": 3,
+      "createDate": "2019-03-15T00:17:36Z",
+      "lastUpdated": "2019-03-15T00:17:36Z",
+      "alertTypeId": 2,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        4,
+        5,
+        12,
+        15,
+        18,
+        28
+      ],
+      "operator": "AND",
+      "criterion": [
+        {
+          "order": 1,
+          "fieldKey": "systemType",
+          "operator": "ANY",
+          "values": [
+            "Service"
+          ]
+        }
+      ]
+    },
+    "alertTrigger": {
+      "id": 2,
+      "createDate": "2019-03-15T00:17:36Z",
+      "lastUpdated": "2019-03-15T00:17:36Z",
+      "alertTypeId": 2,
+      "operator": "AND",
+      "evaluationType": "LINKED",
+      "alertDefinitions": [
+        {
+          "id": 4,
+          "createDate": "2019-03-15T00:17:36Z",
+          "lastUpdated": "2019-03-15T00:17:36Z",
+          "alertTypeId": 2,
+          "alertTriggerId": 2,
+          "order": 1,
+          "entityType": "FORM_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "AND",
+          "criterion": []
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 3,
+    "createDate": "2019-03-15T00:19:52Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Main Asset Without OCN Attached",
+    "alertSummary": " Bore, Pipes and Fittings, Non-Gas Carrying Point, Existing Pipe, Existing Fitting, Non-Gas Carrying Line with System Type Main has no  Operational Change Notice ",
+    "projectTypeIds": [
+      1,
+      9,
+      8,
+      10
+    ],
+    "alertDefinition": {
+      "id": 5,
+      "createDate": "2019-03-15T00:19:52Z",
+      "lastUpdated": "2019-03-15T00:19:52Z",
+      "alertTypeId": 3,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        4,
+        5,
+        12,
+        15,
+        18,
+        28
+      ],
+      "operator": "AND",
+      "criterion": [
+        {
+          "order": 1,
+          "fieldKey": "systemType",
+          "operator": "ANY",
+          "values": [
+            "Main"
+          ]
+        }
+      ]
+    },
+    "alertTrigger": {
+      "id": 3,
+      "createDate": "2019-03-15T00:19:52Z",
+      "lastUpdated": "2019-03-15T00:19:52Z",
+      "alertTypeId": 3,
+      "operator": "AND",
+      "evaluationType": "LINKED",
+      "alertDefinitions": [
+        {
+          "id": 6,
+          "createDate": "2019-03-15T00:19:52Z",
+          "lastUpdated": "2019-03-15T00:19:52Z",
+          "alertTypeId": 3,
+          "alertTriggerId": 3,
+          "order": 1,
+          "entityType": "FORM_TYPE",
+          "entityTypeIds": [
+            4
+          ],
+          "operator": "AND",
+          "criterion": []
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 4,
+    "createDate": "2019-11-26T03:39:36Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "VIOLATION",
+    "title": "Installed Pipe under Transmission Pressure",
+    "alertSummary": "Pipes and Fittings   with Operating Pressure Transmission Pressure (TP)",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 7,
+      "createDate": "2019-11-26T03:39:36Z",
+      "lastUpdated": "2019-11-26T03:39:36Z",
+      "alertTypeId": 4,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 4,
+      "createDate": "2019-11-26T03:39:36Z",
+      "lastUpdated": "2019-11-26T03:39:36Z",
+      "alertTypeId": 4,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 8,
+          "createDate": "2019-11-26T03:39:36Z",
+          "lastUpdated": "2019-11-26T03:39:36Z",
+          "alertTypeId": 4,
+          "alertTriggerId": 4,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "customField641",
+              "operator": "ANY",
+              "values": [
+                "Transmission Pressure (TP)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": [
+      "PREVENT_APPROVAL"
+    ]
+  },
+  {
+    "id": 5,
+    "createDate": "2019-11-26T03:40:22Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Existing Pipe under Transmission Pressure",
+    "alertSummary": "Existing Pipe   with Operating Pressure Transmission Pressure (TP)",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 9,
+      "createDate": "2019-11-26T03:40:22Z",
+      "lastUpdated": "2019-11-26T03:40:22Z",
+      "alertTypeId": 5,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        15
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 5,
+      "createDate": "2019-11-26T03:40:22Z",
+      "lastUpdated": "2019-11-26T03:40:22Z",
+      "alertTypeId": 5,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 10,
+          "createDate": "2019-11-26T03:40:22Z",
+          "lastUpdated": "2019-11-26T03:40:22Z",
+          "alertTypeId": 5,
+          "alertTriggerId": 5,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            15
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "customField234",
+              "operator": "ANY",
+              "values": [
+                "Transmission Pressure (TP)"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 6,
+    "createDate": "2019-11-26T03:42:24Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "VIOLATION",
+    "title": "Non-Standard Pipe Material",
+    "alertSummary": "Pipes and Fittings   with Material ANY  Brass,  Ductile Iron,  Reinforced Epoxy Resin,  Nylon,  Glass Filled Nylon,  Other",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 11,
+      "createDate": "2019-11-26T03:42:24Z",
+      "lastUpdated": "2019-11-26T03:42:24Z",
+      "alertTypeId": 6,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 6,
+      "createDate": "2019-11-26T03:42:24Z",
+      "lastUpdated": "2019-11-26T03:42:24Z",
+      "alertTypeId": 6,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 12,
+          "createDate": "2019-11-26T03:42:24Z",
+          "lastUpdated": "2021-02-24T20:35:01Z",
+          "alertTypeId": 6,
+          "alertTriggerId": 6,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "astm_material",
+              "operator": "ANY",
+              "values": [
+                "Brass",
+                "Ductile Iron",
+                "Reinforced Epoxy Resin",
+                "Nylon",
+                "Glass Filled Nylon",
+                "Other"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": [
+      "PREVENT_APPROVAL"
+    ]
+  },
+  {
+    "id": 7,
+    "createDate": "2019-11-26T03:44:00Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Non-Standard Insert Into Size (1 3/4\",15\")",
+    "alertSummary": "Pipes and Fittings   with Insert Into Size 1 3/4\" , 15\" or Insert Into Size #2 1 3/4\" , 15\"",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 13,
+      "createDate": "2019-11-26T03:44:00Z",
+      "lastUpdated": "2019-11-26T03:44:00Z",
+      "alertTypeId": 7,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 7,
+      "createDate": "2019-11-26T03:44:00Z",
+      "lastUpdated": "2019-11-26T03:44:00Z",
+      "alertTypeId": 7,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 14,
+          "createDate": "2019-11-26T03:44:00Z",
+          "lastUpdated": "2019-11-26T03:44:00Z",
+          "alertTypeId": 7,
+          "alertTriggerId": 7,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "OR",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "customField646",
+              "operator": "ANY",
+              "values": [
+                "1 3/4\"",
+                "15\""
+              ]
+            },
+            {
+              "order": 2,
+              "fieldKey": "customField647",
+              "operator": "ANY",
+              "values": [
+                "1 3/4\"",
+                "15\""
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 8,
+    "createDate": "2019-12-10T19:54:16Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Poor GPS Accuracy (>6\")",
+    "alertSummary": "Pipes and Fittings, Non-Gas Carrying Point, Reference Line, Reference Point, Existing Pipe, Existing Fitting, Other, Non-Gas Carrying Line, LRF Control Point, Joint Trench, Joint Trench Enclosure  with GPS Accuracy Larger Than 6",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 15,
+      "createDate": "2019-12-10T19:54:16Z",
+      "lastUpdated": "2019-12-10T19:54:16Z",
+      "alertTypeId": 8,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5,
+        12,
+        13,
+        14,
+        15,
+        18,
+        19,
+        28,
+        29,
+        30,
+        31
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 8,
+      "createDate": "2019-12-10T19:54:16Z",
+      "lastUpdated": "2019-12-10T19:54:16Z",
+      "alertTypeId": 8,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 16,
+          "createDate": "2019-12-10T19:54:16Z",
+          "lastUpdated": "2019-12-10T19:54:16Z",
+          "alertTypeId": 8,
+          "alertTriggerId": 8,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5,
+            12,
+            13,
+            14,
+            15,
+            18,
+            19,
+            28,
+            29,
+            30,
+            31
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "accuracyInches",
+              "operator": "GREATER_THAN",
+              "values": [
+                "6"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 14,
+    "createDate": "2020-05-05T23:33:02Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Manually Placed Asset",
+    "alertSummary": "Bore, Pipes and Fittings, Non-Gas Carrying Point, Existing Pipe, Existing Fitting, Non-Gas Carrying Line, Joint Trench, Joint Trench Enclosure  with GPS Rec Type MANUAL , ANY MANUAL",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 27,
+      "createDate": "2020-05-05T23:33:02Z",
+      "lastUpdated": "2020-05-05T23:33:02Z",
+      "alertTypeId": 14,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        4,
+        5,
+        12,
+        15,
+        18,
+        28,
+        30,
+        31
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 14,
+      "createDate": "2020-05-05T23:33:02Z",
+      "lastUpdated": "2020-05-05T23:33:02Z",
+      "alertTypeId": 14,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 28,
+          "createDate": "2020-05-05T23:33:02Z",
+          "lastUpdated": "2020-05-05T23:33:02Z",
+          "alertTypeId": 14,
+          "alertTriggerId": 14,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            4,
+            5,
+            12,
+            15,
+            18,
+            28,
+            30,
+            31
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "recordType",
+              "operator": "ANY",
+              "values": [
+                "MANUAL"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 15,
+    "createDate": "2020-05-05T23:46:23Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "WARNING",
+    "title": "Manually Created Newly Installed Asset",
+    "alertSummary": "Pipes and Fittings   with Input Method MANUAL , ANY MANUAL",
+    "projectTypeIds": [
+      1,
+      8,
+      9,
+      10
+    ],
+    "alertDefinition": {
+      "id": 29,
+      "createDate": "2020-05-05T23:46:23Z",
+      "lastUpdated": "2020-05-05T23:46:23Z",
+      "alertTypeId": 15,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 15,
+      "createDate": "2020-05-05T23:46:23Z",
+      "lastUpdated": "2020-05-05T23:46:23Z",
+      "alertTypeId": 15,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 30,
+          "createDate": "2020-05-05T23:46:23Z",
+          "lastUpdated": "2020-05-05T23:46:23Z",
+          "alertTypeId": 15,
+          "alertTriggerId": 15,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "inputMethod",
+              "operator": "ANY",
+              "values": [
+                "MANUAL"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": []
+  },
+  {
+    "id": 16,
+    "createDate": "2020-10-23T02:14:40Z",
+    "lastUpdated": "2021-04-04T08:38:11Z",
+    "alertLevel": "VIOLATION",
+    "title": "GSR Incomplete",
+    "alertSummary": "Gas Service Record   with GSR Complete ANY  No or GSR Complete No Value",
+    "projectTypeIds": [
+      10,
+      9,
+      8,
+      1
+    ],
+    "alertDefinition": {
+      "id": 31,
+      "createDate": "2020-10-23T02:14:40Z",
+      "lastUpdated": "2020-10-23T02:14:40Z",
+      "alertTypeId": 16,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "FORM_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 16,
+      "createDate": "2020-10-23T02:14:40Z",
+      "lastUpdated": "2020-10-23T02:14:40Z",
+      "alertTypeId": 16,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 32,
+          "createDate": "2020-10-23T02:14:40Z",
+          "lastUpdated": "2021-01-05T02:16:56Z",
+          "alertTypeId": 16,
+          "alertTriggerId": 16,
+          "order": 1,
+          "entityType": "FORM_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "OR",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "customField850",
+              "operator": "ANY",
+              "values": [
+                "No"
+              ]
+            },
+            {
+              "order": 2,
+              "fieldKey": "customField850",
+              "operator": "NULL",
+              "values": []
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": [
+      "PREVENT_APPROVAL"
+    ]
+  },
+  {
+    "id": 17,
+    "createDate": "2021-05-07T18:26:51Z",
+    "lastUpdated": "2021-05-07T18:26:51Z",
+    "alertLevel": "VIOLATION",
+    "title": "Correction Warning",
+    "alertSummary": "Pipes and Fittings   with Correction Age Larger Than 30",
+    "projectTypeIds": [
+      9
+    ],
+    "alertDefinition": {
+      "id": 33,
+      "createDate": "2021-05-07T18:26:51Z",
+      "lastUpdated": "2021-05-07T18:26:51Z",
+      "alertTypeId": 17,
+      "alertTriggerId": null,
+      "order": 1,
+      "entityType": "ASSET_TYPE",
+      "entityTypeIds": [
+        5
+      ],
+      "operator": "AND",
+      "criterion": []
+    },
+    "alertTrigger": {
+      "id": 17,
+      "createDate": "2021-05-07T18:26:51Z",
+      "lastUpdated": "2021-05-07T18:26:51Z",
+      "alertTypeId": 17,
+      "operator": "AND",
+      "evaluationType": "CURRENT",
+      "alertDefinitions": [
+        {
+          "id": 34,
+          "createDate": "2021-05-07T18:26:51Z",
+          "lastUpdated": "2021-05-07T18:26:51Z",
+          "alertTypeId": 17,
+          "alertTriggerId": 17,
+          "order": 1,
+          "entityType": "ASSET_TYPE",
+          "entityTypeIds": [
+            5
+          ],
+          "operator": "AND",
+          "criterion": [
+            {
+              "order": 1,
+              "fieldKey": "correctionAge",
+              "operator": "GREATER_THAN",
+              "values": [
+                "30"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "behaviors": [
+      "PREVENT_APPROVAL"
+    ]
+  }
+]

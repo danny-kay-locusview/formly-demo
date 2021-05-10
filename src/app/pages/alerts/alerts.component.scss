@@ -1,38 +1,63 @@
 ::ng-deep {
   .form-card {
-    display: flex;
-    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    padding: 0 30px;
     background: white;
     box-shadow: 0 3px 2px 0 rgb(0, 0, 0, .15);
-    margin-bottom: 1.5rem;
 
     &-title {
-      width: 100%;
-      opacity: 0.5;
+      grid-row: 1;
+      padding: 20px 0;
       font-size: 2rem;
       font-weight: 700;
       color: #A9A9A9;
-      padding: 20px 0;
-      margin: 10px 0 0 30px;
+      opacity: 0.5;
+      margin: 10px 0;
     }
 
     &-field {
-      width: auto;
-      min-width: 320px;
-      margin: 10px 0 10px 30px;
+      grid-row: 2;
+      margin: 10px 0;
     }
 
-    &-row {
-      display: flex;
-      margin-left: -30px;
-
-      formly-group {
-        display: flex;
+    &-text {
+      .mat-form-field-underline {
+        background: transparent;
       }
     }
+  }
 
-    &-spacer {
-      width: 100%;
-    }
+  .grid {
+    display: grid;
+    grid-auto-columns: 320px;
+    grid-column-gap: 30px;
+  }
+
+  .grid-row-1 {
+    grid-row: 1;
+  }
+
+  .grid-row-2 {
+    grid-row: 2;
+  }
+
+  .grid-row-3 {
+    grid-row: 3;
+  }
+
+  .grid-col-1 {
+    grid-column: 1;
+  }
+
+  .grid-col-2 {
+    grid-column: 2;
+  }
+
+  .grid-col-3 {
+    grid-column: 3;
+  }
+
+  .grid-col-max {
+    grid-column: 1 / 5;
   }
 }

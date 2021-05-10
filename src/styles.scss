@@ -32,24 +32,21 @@ body {
 }
 
 .drawer-sidenav {
-  width: 33.34%;
+  width: 30%;
 }
 
 .left-content {
   box-sizing: border-box;
   width: 100%;
-  padding: 2rem 1rem;
+  padding: 2.5rem;
 
   h1 {
     display: flex;
     align-items: center;
     justify-content: space-between;
-
-    .mat-chip {
-      font-size: 12px;
-    }
   }
 
+  mat-radio-button + mat-radio-button,
   button + button {
     margin-left: .5rem;
   }

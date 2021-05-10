@@ -1,11 +1,11 @@
-<div *ngFor="let field of field.fieldGroup; let i = index;" class="formly-card-field">
+<div *ngFor="let field of field.fieldGroup; let i = index;" class="formly-card-field repeat-wrapper">
   <formly-field [field]="field"></formly-field>
   <button mat-icon-button type="button" (click)="remove(i)">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
 
-<div *ngIf="field.fieldGroup?.length > 0 else IsFirstClause">
+<div *ngIf="!to.addFirstText || field.fieldGroup?.length > 0 else IsFirstClause">
   <button mat-button type="button" (click)="add()">
     <mat-icon color="warn" [inline]="true">add</mat-icon>
     {{ to.addText }}
