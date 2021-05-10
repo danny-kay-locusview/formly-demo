@@ -1,0 +1,485 @@
+{
+  "alertLevel": [
+    {
+      "value": "WARNING",
+      "label": "Warning",
+      "matchValue": 0
+    },
+    {
+      "value": "VIOLATION",
+      "label": "Violation",
+      "matchValue":  0
+    },
+    {
+      "value": "WARNING",
+      "label": "Low",
+      "matchValue":  1
+    },
+    {
+      "value": "MINOR_VIOLATION",
+      "label": "Medium",
+      "matchValue":  1
+    },
+    {
+      "value": "VIOLATION",
+      "label": "High",
+      "matchValue":  1
+    }
+  ],
+  "alert_will": [
+    {
+      "value": "PREVENT_APPROVAL",
+      "label": "Prevent approval"
+    },
+    {
+      "value": "PREVENT_SUBMISSION",
+      "label": "Prevent submission"
+    }
+  ],
+  "projectTypeIds": [
+    {
+      "value": 10,
+      "label": "Abandonment"
+    },
+    {
+      "value": 9,
+      "label": "Main"
+    },
+    {
+      "value": 8,
+      "label": "Service"
+    },
+    {
+      "value": 1,
+      "label": "Service & Main"
+    }
+  ],
+  "entityType": [
+    {
+      "value": "ASSET_TYPE",
+      "label": "Asset type"
+    },
+    {
+      "value": "FORM_TYPE",
+      "label": "Form type"
+    },
+    {
+      "value": "JOINT_TYPE",
+      "label": "Joint type"
+    },
+    {
+      "value": "PROJECT_TYPE",
+      "label": "Project type itself",
+      "matchValue": 1
+    }
+  ],
+  "entityTypeIds": [
+    {
+      "value": 1,
+      "label": "Cathodic Protection Stamp",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 2,
+      "label": "Gas Main Weld Inspection",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 3,
+      "label": "USA / 811 Stamp",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 4,
+      "label": "Operational Change Notice",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 5,
+      "label": "Gas Service Record",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 6,
+      "label": "Pipe Wrap Asbestos Stamp",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 7,
+      "label": "Leak Test Stamp",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 8,
+      "label": "As-Built Checklist",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 11,
+      "label": "Pipe Inspection",
+      "matchValue": "FORM_TYPE"
+    },
+    {
+      "value": 4,
+      "label": "Bore",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 5,
+      "label": "Pipes and Fittings",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 12,
+      "label": "Non-Gas Carrying Point",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 13,
+      "label": "Reference Line",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 14,
+      "label": "Reference Point",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 15,
+      "label": "Existing Pipe",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 18,
+      "label": "Existing Fitting",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 19,
+      "label": "Other",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 28,
+      "label": "Non-Gas Carrying Line",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 29,
+      "label": "LRF Control Point",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 30,
+      "label": "Joint Trench",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 31,
+      "label": "Joint Trench Enclosure",
+      "matchValue": "ASSET_TYPE"
+    },
+    {
+      "value": 1,
+      "label": "Electro",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 2,
+      "label": "Manual Butt",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 3,
+      "label": "Hydraulic Butt",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 4,
+      "label": "Mechanical",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 5,
+      "label": "Weld",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 6,
+      "label": "Sidewall",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 7,
+      "label": "Butt Fusion",
+      "matchValue": "JOINT_TYPE"
+    },
+    {
+      "value": 8,
+      "label": "Joint Without Details",
+      "matchValue": "JOINT_TYPE"
+    }
+  ],
+  "fieldKey": [
+    {
+      "value": "inputMethod",
+      "label": "Input Method",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "accuracyInches",
+      "label": "GPS Accuracy (inch)",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        },
+        {
+          "entityType": "FORM_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "recordType",
+      "label": "GPS Rec Type",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        },
+        {
+          "entityType": "FORM_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "fixQuality",
+      "label": "Fix Quality",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "correctionAge",
+      "label": "Correction Age",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "systemType",
+      "label": "System Type",
+      "matchValue": [
+        {
+          "entityType": "ASSET_TYPE"
+        }
+      ]
+    },
+    {
+      "value": "connectionType",
+      "label": "Connection Type",
+      "matchValue": [
+        {
+          "entityType": "JOINT_TYPE"
+        }
+      ]
+    }
+  ],
+  "operator": [
+    {
+      "value": "NULL",
+      "label": "No Value"
+    },
+    {
+      "value": "NOT_NULL",
+      "label": "Any Value"
+    },
+    {
+      "value": "ANY",
+      "label": "Any of Specific Value"
+    },
+    {
+      "value": "AT_LEAST",
+      "label": "At Least Specific Value"
+    },
+    {
+      "value": "OUT_OF_RANGE",
+      "label": "Out of Range"
+    },
+    {
+      "value": "IN_RANGE",
+      "label": "In Range"
+    },
+    {
+      "value": "EQUAL",
+      "label": "Equals to Specific Value"
+    },
+    {
+      "value": "GREATER_THAN",
+      "label": "Larger Than"
+    },
+    {
+      "value": "GREATER_THAN_EQUAL",
+      "label": "Equals or Larger Than"
+    },
+    {
+      "value": "LESS_THAN",
+      "label": "Smaller Than"
+    },
+    {
+      "value": "LESS_THAN_EQUAL",
+      "label": "Equals or Smaller Than"
+    },
+    {
+      "value": "ANY_OR_NO",
+      "label": "Any Value or No Value"
+    },
+    {
+      "value": "HEAT_VALIDATION",
+      "label": "Heat # Validation"
+    },
+    {
+      "value": "INVALID_VALUE",
+      "label": "Invalid Value"
+    },
+    {
+      "value": "VALID_VALUE",
+      "label": "Valid Value"
+    },
+    {
+      "value": "LARGER_THAN",
+      "label": "Larger Than"
+    },
+    {
+      "value": "LARGER_THAN_EQUAL",
+      "label": "Equals or Larger Than"
+    }
+  ],
+  "values": [
+    {
+      "value": "Main",
+      "label": "Main",
+      "matchValue": [
+        "systemType"
+      ]
+    },
+    {
+      "value": "Service",
+      "label": "Service",
+      "matchValue": [
+        "systemType"
+      ]
+    },
+    {
+      "value": "SCANNED",
+      "label": "SCANNED",
+      "matchValue": [
+        "inputMethod"
+      ]
+    },
+    {
+      "value": "MANUAL",
+      "label": "MANUAL",
+      "matchValue": [
+        "inputMethod"
+      ]
+    },
+    {
+      "value": "TYPED",
+      "label": "TYPED",
+      "matchValue": [
+        "inputMethod"
+      ]
+    },
+    {
+      "value": "EXISTING",
+      "label": "EXISTING",
+      "matchValue": [
+        "inputMethod"
+      ]
+    },
+    {
+      "value": "INTERNAL",
+      "label": "INTERNAL",
+      "matchValue": [
+        "recordType"
+      ]
+    },
+    {
+      "value": "DEFAULT",
+      "label": "DEFAULT",
+      "matchValue": [
+        "recordType"
+      ]
+    },
+    {
+      "value": "EXTERNAL",
+      "label": "EXTERNAL",
+      "matchValue": [
+        "recordType"
+      ]
+    },
+    {
+      "value": "MANUAL",
+      "label": "MANUAL",
+      "matchValue": [
+        "recordType"
+      ]
+    },
+    {
+      "value": "CALCULATED",
+      "label": "CALCULATED",
+      "matchValue": [
+        "recordType"
+      ]
+    },
+    {
+      "value": "GPS",
+      "label": "GPS",
+      "matchValue": [
+        "fixQuality"
+      ]
+    },
+    {
+      "value": "DGPS",
+      "label": "DGPS",
+      "matchValue": [
+        "fixQuality"
+      ]
+    },
+    {
+      "value": "RTK",
+      "label": "RTK",
+      "matchValue": [
+        "fixQuality"
+      ]
+    },
+    {
+      "value": "Float RTK",
+      "label": "Float RTK",
+      "matchValue": [
+        "fixQuality"
+      ]
+    }
+  ],
+  "evaluationType": [
+    {
+      "value": "CONTAINS",
+      "label": "Contained anywhere within"
+    },
+    {
+      "value": "LINKED",
+      "label": "Entity does not have attachment"
+    },
+    {
+      "value": "CURRENT",
+      "label": "Field was filled out"
+    }
+  ]
+}
