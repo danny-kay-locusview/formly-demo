@@ -1,0 +1,13 @@
+{
+  "fieldGroupClassName": "grid",
+  "fieldGroup": [
+    {
+      "className": "form-card-field toggle grid-row-1",
+      "key": "criterion",
+      "type": "input",
+      "templateOptions": {
+        "label": "Test"
+      }
+    }
+  ]
+}

@@ -27,7 +27,7 @@
         "required": true
       },
       "expressionProperties": {
-        "templateOptions.options": "formState.fieldOptions.entityType.filter(o => o.value !== 'PROJECT_TYPE' && o.value !== model.entityType && !!model.entityType)",
+        "templateOptions.options": "formState.fieldOptions.entityType.filter(o => !!model.entityType && o.matchValue?.indexOf(model.entityType) > -1)",
         "model.entityType2": "field.templateOptions.options.find(o => o.value === model.entityType2) ? model.entityType2 : null"
       },
       "hideExpression": "model.evaluationType === 'CURRENT'",
@@ -42,8 +42,8 @@
         "multiple": true
       },
       "expressionProperties": {
-        "templateOptions.label": "'Which ' + model.entityType2 + ' type'",
-        "templateOptions.placeholder": "'Which ' + model.entityType2 + ' type'",
+        "templateOptions.label": "'Which ' + formState.entityTypeDictionary[model.entityType2] + ' type'",
+        "templateOptions.placeholder": "'Which ' + formState.entityTypeDictionary[model.entityType2] + ' type'",
         "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType2)"
       },
       "hideExpression": "model.evaluationType === 'CURRENT' || !model.entityType2",
@@ -55,7 +55,9 @@
       "type": "clear",
       "templateOptions": {
         "keyOfFieldToClear": "entityType2"
-      }
+      },
+      "hideExpression": "!model.evaluationType",
+      "resetOnHide": true
     },
     {
       "className": "form-card-field grid-row-3",
@@ -103,119 +105,33 @@
                   "multiple": true
                 },
                 "expressionProperties": {
-                  "templateOptions.label": "'Which ' + model.entityType + ' type'",
-                  "templateOptions.placeholder": "'Which ' + model.entityType + ' type'",
+                  "templateOptions.label": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
+                  "templateOptions.placeholder": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
                   "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType)"
                 },
                 "hideExpression": "model.evaluationType === 'CURRENT' || !model.entityType",
                 "resetOnHide": true
-              }
-            ]
-          }
-        }
-      ],
-      "hideExpression": "!model.evaluationType",
-      "resetOnHide": true
-    },
-    {
-      "className": "form-card-field grid-row-3",
-      "fieldGroup": [
-        {
-          "key": "trigger",
-          "type": "repeat",
-          "templateOptions": {
-            "addFirstText": "Set Specific Fields",
-            "addText": "Add Field"
-          },
-          "fieldArray": {
-            "fieldGroupClassName": "grid",
-            "fieldGroup": [
-              {
-                "className": "form-card-field toggle grid-row-1",
-                "key": "criterion",
-                "type": "radio",
-                "templateOptions": {
-                  "options": [
-                    { "value": "and", "label": "And" },
-                    { "value": "or", "label": "Or" }
-                  ]
-                },
-                "defaultValue": "and",
-                "hideExpression": "field.parent.index === 0",
-                "resetOnHide": true
               },
               {
-                "className": "form-card-field grid-row-2",
-                "key": "fieldKey",
-                "type": "select",
-                "templateOptions": {
-                  "label": "Field",
-                  "placeholder": "Field",
-                  "required": true
-                },
-                "expressionProperties": {
-                  "templateOptions.options": "formState.fieldOptions.fieldKey.filter(o => !!o.matchValue.some(mv => !mv.entityTypeIds && mv.entityType === field.parent.parent.parent.model.entityType2))",
-                  "model.fieldKey": "field.templateOptions.options.find(o => o.value === model.fieldKey) ? model.fieldKey : null"
-                }
-              },
-              {
-                "className": "form-card-field grid-row-2",
-                "key": "operator",
-                "type": "select",
-                "templateOptions": {
-                  "label": "Was filled out with",
-                  "placeholder": "Was filled out with",
-                  "required": true
-                },
-                "expressionProperties": {
-                  "templateOptions.options": "formState.fieldOptions.operator",
-                  "model.operator": "field.templateOptions.options.find(o => o.value === model.operator) ? model.operator : null"
-                },
-                "hideExpression": "!model.fieldKey",
-                "resetOnHide": true
-              },
-              {
-                "className": "form-card-field grid-row-2",
-                "key": "values",
-                "type": "select",
-                "templateOptions": {
-                  "label": "Specific value",
-                  "placeholder": "Specific value",
-                  "multiple": true
-                },
-                "expressionProperties": {
-                  "templateOptions.options": "formState.fieldOptions.values.filter(o => model.operator === 'ANY' && o.matchValue.indexOf(model.fieldKey) > -1)"
-                },
-                "hideExpression": "model.operator !== 'ANY'",
-                "resetOnHide": true
-              },
-              {
-                "className": "form-card-field grid-row-2",
-                "key": "min",
-                "type": "input",
-                "templateOptions": {
-                  "label": "Min value",
-                  "placeholder": "Min value"
-                },
-                "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
-                "resetOnHide": true
-              },
-              {
-                "className": "form-card-field grid-row-2",
-                "key": "max",
-                "type": "input",
-                "templateOptions": {
-                  "label": "Min value",
-                  "placeholder": "Min value"
-                },
-                "hideExpression": "!(model.operator?.indexOf('RANGE') > -1)",
+                "className": "form-card-field grid-row-3 grid-col-2",
+                "fieldGroup": [
+                  {
+                    "key": "specifics",
+                    "type": "repeat",
+                    "templateOptions": {
+                      "addFirstText": "Set Specific Fields",
+                      "addText": "Add Field"
+                    }
+                  }
+                ],
+                "hideExpression": "!(model.entityTypeIds?.length > 0)",
                 "resetOnHide": true
               }
             ]
           }
         }
       ],
-      "hideExpression": "!model.evaluationType || model.evaluationType === 'LINKED' && !(model.entityTypeIds2?.length > 0)",
+      "hideExpression": "!(model.entityTypeIds2?.length > 0) && (model.evaluationType === 'CURRENT' || model.evaluationType === 'LINKED')",
       "resetOnHide": true
     }
   ]

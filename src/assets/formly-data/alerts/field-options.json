@@ -57,20 +57,32 @@
   "entityType": [
     {
       "value": "ASSET_TYPE",
-      "label": "Asset type"
+      "label": "Asset type",
+      "matchValue": [
+        "FORM_TYPE",
+        "JOINT_TYPE",
+        "PROJECT_TYPE"
+      ]
     },
     {
       "value": "FORM_TYPE",
-      "label": "Form type"
+      "label": "Form type",
+      "matchValue": [
+        "ASSET_TYPE",
+        "PROJECT_TYPE"
+      ]
     },
     {
       "value": "JOINT_TYPE",
-      "label": "Joint type"
+      "label": "Joint type",
+      "matchValue": [
+        "ASSET_TYPE",
+        "PROJECT_TYPE"
+      ]
     },
     {
       "value": "PROJECT_TYPE",
-      "label": "Project type itself",
-      "matchValue": 1
+      "label": "Project type itself"
     }
   ],
   "entityTypeIds": [

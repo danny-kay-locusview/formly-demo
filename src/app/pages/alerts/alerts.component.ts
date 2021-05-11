@@ -4,6 +4,7 @@ import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { promptSection, whenSection, satisfiesSection, storySection, fieldOptions, responseBody } from '../../../assets/formly-data/alerts';
+import repeatSectionJson from '../../../assets/formly-data/alerts-repeat-section.json';
 
 @Component({
   selector: 'app-alerts',
@@ -11,8 +12,13 @@ import { promptSection, whenSection, satisfiesSection, storySection, fieldOption
   styleUrls: ['./alerts.component.scss']
 })
 export class AlertsComponent extends LayoutComponent implements OnInit {
-  private _enhanced = false;
+  private _enhanced: boolean = false;
   private _responseIndex: number = null;
+  private _entityTypeDictionary = {
+    ASSET_TYPE: 'form',
+    FORM_TYPE: 'form',
+    JOINT_TYPE: 'joint'
+  };
 
   constructor(
     public sharedService: SharedService,
@@ -34,7 +40,8 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
   initializeFormState(): void {
     this.options.formState = {
       enhanced: this._enhanced,
-      fieldOptions: []
+      fieldOptions: [],
+      entityTypeDictionary: this._entityTypeDictionary
     };
   }
 
@@ -79,7 +86,29 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
       satisfiesSection,
       storySection
     ].map((formCard: FormlyFieldConfig) => {
+      formCard.fieldGroup.forEach((fieldGroup: FormlyFieldConfig) => {
+        if (fieldGroup.fieldGroup) {
+          const attachment = fieldGroup.fieldGroup.find((f: FormlyFieldConfig) => f.key === 'attachment');
+          if (attachment) {
+            const specifics = attachment.fieldArray.fieldGroup[3].fieldGroup?.find((f: FormlyFieldConfig) => f.key === 'specifics');
+            if (specifics) {
+              this.setRecursiveFieldArray(specifics);
+            }
+          }
+        }
+      });
+
       return formCard;
     });
+  }
+
+  setRecursiveFieldArray(field: FormlyFieldConfig): FormlyFieldConfig {
+    Object.defineProperty(field, 'fieldArray', {
+      get: () => repeatSectionJson,
+      enumerable: true,
+      configurable: true,
+    });
+
+    return field;
   }
 }

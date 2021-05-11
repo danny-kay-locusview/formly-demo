@@ -15,7 +15,7 @@
         "required": true
       },
       "expressionProperties": {
-        "templateOptions.options": "formState.fieldOptions.entityType.filter(o => (model.projectTypeIds?.length > 0) && (!o.matchValue || model.projectTypeIds?.length === o.matchValue))",
+        "templateOptions.options": "formState.fieldOptions.entityType.filter(o => (model.projectTypeIds?.length > 0) && (o.value !== 'PROJECT_TYPE' || model.projectTypeIds?.length === 1))",
         "model.entityType": "field.templateOptions.options.find(o => o.value === model.entityType) ? model.entityType : null"
       }
     },
@@ -28,8 +28,8 @@
         "multiple": true
       },
       "expressionProperties": {
-        "templateOptions.label": "'Which ' + model.entityType + ' type'",
-        "templateOptions.placeholder": "'Which ' + model.entityType + ' type'",
+        "templateOptions.label": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
+        "templateOptions.placeholder": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
         "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType)"
       },
       "hideExpression": "!model.entityType || model.entityType === 'PROJECT_TYPE'",
@@ -112,7 +112,7 @@
                   "multiple": true
                 },
                 "expressionProperties": {
-                  "templateOptions.options": "formState.fieldOptions.values.filter(o => model.operator === 'ANY' && o.matchValue.indexOf(model.fieldKey) > -1)"
+                  "templateOptions.options": "formState.fieldOptions.values.filter(o => model.operator === 'ANY' && o.matchValue?.indexOf(model.fieldKey) > -1)"
                 },
                 "hideExpression": "model.operator !== 'ANY'",
                 "resetOnHide": true
