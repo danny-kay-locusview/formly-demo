@@ -1,0 +1,26 @@
+{
+  "fieldGroupClassName": "form-card grid",
+  "fieldGroup": [
+    {
+      "className": "form-card-title",
+      "template": "Long Story Short"
+    },
+    {
+      "className": "form-card-text grid-col-max",
+      "key": "alertSummary",
+      "type": "input",
+      "templateOptions": {
+        "readonly": true
+      }
+    },
+    {
+      "key": "title",
+      "type": "input",
+      "templateOptions": {
+        "label": "Display Label",
+        "placeholder": "Display Label",
+        "required": true
+      }
+    }
+  ]
+}
