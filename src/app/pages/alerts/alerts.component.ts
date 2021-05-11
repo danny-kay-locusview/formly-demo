@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LayoutComponent } from "../../components/layout/layout.component";
-import { SharedService } from "../../services/shared.service";
-import fieldsJson from "../../../assets/formly-data/alerts.json";
-import fieldOptionsJson from "../../../assets/formly-data/alerts-options.json";
-import responseJson from "../../../assets/formly-data/alerts-response.json";
-import { ActivatedRoute } from "@angular/router";
+import { LayoutComponent } from '../../components/layout/layout.component';
+import { SharedService } from '../../services/shared.service';
+import { ActivatedRoute } from '@angular/router';
+import { FormlyFieldConfig } from '@ngx-formly/core';
+import { promptSection, whenSection, satisfiesSection, storySection, fieldOptions, responseBody } from '../../../assets/formly-data/alerts';
 
 @Component({
   selector: 'app-alerts',
@@ -12,7 +11,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ['./alerts.component.scss']
 })
 export class AlertsComponent extends LayoutComponent implements OnInit {
-  private _enhanced: boolean = false;
+  private _enhanced = false;
   private _responseIndex: number = null;
 
   constructor(
@@ -23,7 +22,7 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const id: string = this.route.snapshot.paramMap.get("id");
+    const id: string = this.route.snapshot.paramMap.get('id');
     this._responseIndex = id ? parseInt(id) : null;
 
     this.initializeFormState();
@@ -36,7 +35,7 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
     this.options.formState = {
       enhanced: this._enhanced,
       fieldOptions: []
-    }
+    };
   }
 
   initializeModel(index = null): void {
@@ -45,7 +44,7 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
       return;
     }
 
-    const { alertLevel, projectTypeIds, alertDefinition, alertTrigger, alertSummary, title } = responseJson[index];
+    const { alertLevel, projectTypeIds, alertDefinition, alertTrigger, alertSummary, title } = responseBody[index];
     const model: any = {
       // Prompt Alert Card
       alertLevel,
@@ -70,11 +69,16 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
   }
 
   initializeFieldOptions(): void {
-    this.options.formState.fieldOptions = fieldOptionsJson;
+    this.options.formState.fieldOptions = fieldOptions;
   }
 
   initializeFields(): void {
-    this.fields = fieldsJson.map((formCard) => {
+    this.fields = [
+      promptSection,
+      whenSection,
+      satisfiesSection,
+      storySection
+    ].map((formCard: FormlyFieldConfig) => {
       return formCard;
     });
   }

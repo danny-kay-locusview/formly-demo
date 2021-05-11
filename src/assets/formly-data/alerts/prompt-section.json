@@ -1,0 +1,53 @@
+{
+  "fieldGroupClassName": "form-card grid",
+  "fieldGroup": [
+    {
+      "className": "form-card-title",
+      "template": "Prompt Alert"
+    },
+    {
+      "className": "form-card-field",
+      "key": "alertLevel",
+      "type": "select",
+      "templateOptions": {
+        "label": "Severity Level",
+        "placeholder": "Severity Level",
+        "required": true
+      },
+      "expressionProperties": {
+        "templateOptions.options": "formState.fieldOptions.alertLevel.filter(o => !!o.matchValue === formState.enhanced)",
+        "model.alertLevel": "field.templateOptions.options.find(o => o.value === model.alertLevel) ? model.alertLevel : null"
+      }
+    },
+    {
+      "className": "form-card-field",
+      "key": "alert_will",
+      "type": "select",
+      "templateOptions": {
+        "label": "Alert Will",
+        "placeholder": "Alert Will",
+        "multiple": true,
+        "required": true
+      },
+      "expressionProperties": {
+        "templateOptions.options": "formState.fieldOptions.alert_will"
+      },
+      "hideExpression": "!formState.enhanced",
+      "resetOnHide": true
+    },
+    {
+      "className": "form-card-field",
+      "key": "projectTypeIds",
+      "type": "select",
+      "templateOptions": {
+        "label": "Project Types",
+        "placeholder": "Project Types",
+        "multiple": true,
+        "required": true
+      },
+      "expressionProperties": {
+        "templateOptions.options": "formState.fieldOptions.projectTypeIds"
+      }
+    }
+  ]
+}
