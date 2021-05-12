@@ -3,7 +3,7 @@ import { LayoutComponent } from '../../components/layout/layout.component';
 import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
-import { map, startWith, tap } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 import { promptSection, whenSection, satisfiesSection, storySection, fieldOptions, responseBody } from '../../../assets/formly-data/alerts';
 
 @Component({
@@ -29,7 +29,7 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     const id: string = this.route.snapshot.paramMap.get('id');
-    this._responseIndex = id ? parseInt(id) : null;
+    this._responseIndex = id ? parseInt(id, 10) : null;
 
     this.initializeFormState();
     this.initializeFieldOptions();
@@ -106,7 +106,8 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
             map(value => options.filter(o => !!o.matchValue === this.options.formState.enhanced))
           );
         }
-      })
+      }),
+      configurable: true
     });
   }
 }
