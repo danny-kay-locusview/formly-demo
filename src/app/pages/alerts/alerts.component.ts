@@ -3,6 +3,7 @@ import { LayoutComponent } from '../../components/layout/layout.component';
 import { SharedService } from '../../services/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
+import { map, startWith, tap } from 'rxjs/operators';
 import { promptSection, whenSection, satisfiesSection, storySection, fieldOptions, responseBody } from '../../../assets/formly-data/alerts';
 
 @Component({
@@ -79,7 +80,28 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
       satisfiesSection,
       storySection
     ].map((formCard: FormlyFieldConfig) => {
+      const field = formCard.fieldGroup?.find(f => f.key === 'alertLevel');
+      if (field) {
+        this.setFieldOptionsAsync(field);
+      }
       return formCard;
+    });
+  }
+
+  setFieldOptionsAsync(field: FormlyFieldConfig): void {
+    Object.defineProperty(field, 'hooks', {
+      get: () => ({
+        onInit: () => {
+          const fieldKey = field.key as string;
+          const options = this.options.formState.fieldOptions[fieldKey];
+          const control = this.form.get(fieldKey);
+          field.templateOptions.options = control.valueChanges.pipe(
+            startWith(control.value),
+            map(value => options.filter(o => !!o.matchValue === this.options.formState.enhanced)),
+            tap(() => control.setValue(null))
+          );
+        }
+      })
     });
   }
 }
