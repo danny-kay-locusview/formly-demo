@@ -97,8 +97,7 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
           const control = this.form.get(fieldKey);
           field.templateOptions.options = control.valueChanges.pipe(
             startWith(control.value),
-            map(value => options.filter(o => !!o.matchValue === this.options.formState.enhanced)),
-            tap(() => control.setValue(null))
+            map(value => options.filter(o => !!o.matchValue === this.options.formState.enhanced))
           );
         }
       })
