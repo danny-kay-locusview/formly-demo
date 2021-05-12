@@ -42,8 +42,8 @@
         "multiple": true
       },
       "expressionProperties": {
-        "templateOptions.label": "'Which ' + model.entityType2 + ' type'",
-        "templateOptions.placeholder": "'Which ' + model.entityType2 + ' type'",
+        "templateOptions.label": "'Which ' + formState.entityTypeDictionary[model.entityType2] + ' type'",
+        "templateOptions.placeholder": "'Which ' + formState.entityTypeDictionary[model.entityType2] + ' type'",
         "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType2)"
       },
       "hideExpression": "model.evaluationType === 'CURRENT' || !model.entityType2",

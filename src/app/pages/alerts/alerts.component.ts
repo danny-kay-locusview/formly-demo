@@ -14,6 +14,11 @@ import { promptSection, whenSection, satisfiesSection, storySection, fieldOption
 export class AlertsComponent extends LayoutComponent implements OnInit {
   private _enhanced = false;
   private _responseIndex: number = null;
+  private _entityTypeDictionary = {
+    ASSET_TYPE: 'asset',
+    FORM_TYPE: 'form',
+    JOINT_TYPE: 'joint'
+  };
 
   constructor(
     public sharedService: SharedService,
@@ -35,7 +40,8 @@ export class AlertsComponent extends LayoutComponent implements OnInit {
   initializeFormState(): void {
     this.options.formState = {
       enhanced: this._enhanced,
-      fieldOptions: []
+      fieldOptions: [],
+      entityTypeDictionary: this._entityTypeDictionary
     };
   }
 
