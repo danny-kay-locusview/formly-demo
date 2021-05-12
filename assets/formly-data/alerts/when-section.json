@@ -28,8 +28,8 @@
         "multiple": true
       },
       "expressionProperties": {
-        "templateOptions.label": "'Which ' + model.entityType + ' type'",
-        "templateOptions.placeholder": "'Which ' + model.entityType + ' type'",
+        "templateOptions.label": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
+        "templateOptions.placeholder": "'Which ' + formState.entityTypeDictionary[model.entityType] + ' type'",
         "templateOptions.options": "formState.fieldOptions.entityTypeIds.filter(o => o.matchValue === model.entityType)"
       },
       "hideExpression": "!model.entityType || model.entityType === 'PROJECT_TYPE'",
