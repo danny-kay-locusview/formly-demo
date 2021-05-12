@@ -13,10 +13,6 @@
         "label": "Severity Level",
         "placeholder": "Severity Level",
         "required": true
-      },
-      "expressionProperties": {
-        "templateOptions.options": "formState.fieldOptions.alertLevel.filter(o => !!o.matchValue === formState.enhanced)",
-        "model.alertLevel": "field.templateOptions.options.find(o => o.value === model.alertLevel) ? model.alertLevel : null"
       }
     },
     {
